@@ -64,8 +64,8 @@
     <div class="container my-3">
         <h1 class="text-center">TO-DOs List</h1>
         <div class="form-group mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
+            <label for="title" class="form-label">Time</label>
+            <input type="time" class="form-control" id="title" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">Add an item to the TO-DOs list.</div>
         </div>
         <div class="form-floating">
@@ -79,8 +79,9 @@
                 <thead>
                     <tr>
                         <th scope="col">SR.NO</th>
-                        <th scope="col">Item title </th>
-                        <th scope="col">Item Description</th>
+                        <th scope="col">Time </th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Finished</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -147,6 +148,7 @@
             <th scope="row">${index + 1}</th>
             <td>${element[0]}</td>
             <td>${element[1]}</td>
+            <td><input type="checkbox"></td>
             <td><button type="button" class="btn btn-danger delete-btn" data-index="${index}">Delete</button></td>
         </tr>`;
                 });
