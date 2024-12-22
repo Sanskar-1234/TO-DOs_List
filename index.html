@@ -17,14 +17,11 @@
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-    <!-- Example Code -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -79,26 +76,23 @@
                 <thead>
                     <tr>
                         <th scope="col">SR.NO</th>
-                        <th scope="col">Time </th>
+                        <th scope="col">Time</th>
                         <th scope="col">Description</th>
                         <th scope="col">Finished</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="table_body">
-                    <!-- <tr>
-                        <th scope="row">1</th>
-                        <td>Get some Coffee</td>
-                        <td>Lorem ipsum dolor sit amet.</td>
-                        <td><button type="button" class="btn btn-primary">Delete</button></td>
-                    </tr> -->
+                    <!-- Rows will be populated dynamically -->
                 </tbody>
             </table>
         </div>
     </div>
+
     <div class="container abcd">
         <button class="btn btn-success" id="clear" onclick="clearabc()">Clear All</button>
     </div>
+
     <script>
         let add = document.getElementById("add");
 
@@ -122,7 +116,7 @@
             }
 
             // Add new item to the array
-            itemJsonArray.push([tit, des]);
+            itemJsonArray.push([tit, des, false]); // Adding a false checkbox state initially
             localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
 
             // Render the updated table
@@ -143,12 +137,13 @@
                 let str = "";
 
                 itemJsonArray.forEach((element, index) => {
+                    const checked = element[2] ? 'checked' : ''; // Check if the item is marked as done
                     str += `
         <tr>
             <th scope="row">${index + 1}</th>
             <td>${element[0]}</td>
             <td>${element[1]}</td>
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" class="checkbox" data-index="${index}" ${checked}></td>
             <td><button type="button" class="btn btn-danger delete-btn" data-index="${index}">Delete</button></td>
         </tr>`;
                 });
@@ -159,11 +154,14 @@
             }
         }
 
-        // Add event delegation for delete buttons
+        // Add event delegation for delete and checkbox actions
         document.getElementById("table_body").addEventListener("click", (event) => {
             if (event.target.classList.contains("delete-btn")) {
                 const index = event.target.getAttribute("data-index");
                 deleteRow(index);
+            } else if (event.target.classList.contains("checkbox")) {
+                const index = event.target.getAttribute("data-index");
+                toggleCheckboxState(index, event.target.checked);
             }
         });
 
@@ -182,22 +180,34 @@
             }
         }
 
+        // Function to toggle checkbox state
+        function toggleCheckboxState(index, isChecked) {
+            const itemJsonArraystr = localStorage.getItem("itemJson");
+            if (itemJsonArraystr) {
+                let itemJsonArray = JSON.parse(itemJsonArraystr);
+
+                // Update the checkbox state (checked/unchecked)
+                itemJsonArray[index][2] = isChecked;
+                localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
+
+                // Re-render the table
+                renderTable();
+            }
+        }
+
         // Load the table when the page is loaded
         window.onload = renderTable;
 
         // Clear all data
         function clearabc() {
-            if (confirm("Do you relly want to clear ?")) {
-                
+            if (confirm("Do you really want to clear?")) {
                 console.log("Clearing the storage");
                 localStorage.clear();
                 renderTable();
-            } 
+            }
         }
-
     </script>
 
-    <!-- End Example Code -->
 </body>
 
 </html>
