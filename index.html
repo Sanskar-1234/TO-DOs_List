@@ -2,211 +2,203 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>TODOs list</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        .abcd {
-            text-align: center;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>TODOs List with Alarm</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .abcd {
+      text-align: center;
+    }
+
+    #searchBar {
+      margin: 0 auto;
+      width: 50%;
+    }
+  </style>
 </head>
 
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container my-3">
-        <h1 class="text-center">TO-DOs List</h1>
-        <div class="form-group mb-3">
-            <label for="title" class="form-label">Time</label>
-            <input type="time" class="form-control" id="title" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">Add an item to the TO-DOs list.</div>
-        </div>
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="description"></textarea>
-            <label for="description">Description</label>
-        </div>
-        <button type="submit" id="add" class="btn btn-primary my-3">Add to list</button>
-        <div id="items">
-            <h2>Your items : </h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">SR.NO</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Finished</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="table_body">
-                    <!-- Rows will be populated dynamically -->
-                </tbody>
-            </table>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TODOs App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <form class="d-flex w-100">
+          <input id="searchBar" class="form-control" type="search" placeholder="Search tasks" aria-label="Search">
+        </form>
+      </div>
     </div>
+  </nav>
 
-    <div class="container abcd">
-        <button class="btn btn-success" id="clear" onclick="clearabc()">Clear All</button>
+  <div class="container my-3">
+    <h1 class="text-center">TO-DOs List with Alarm</h1>
+    <div class="form-group mb-3">
+      <label for="title" class="form-label">Set Time</label>
+      <input type="time" class="form-control" id="title">
     </div>
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Enter task description" id="description"></textarea>
+      <label for="description">Description</label>
+    </div>
+    <button type="submit" id="add" class="btn btn-primary my-3">Add to List</button>
+    <div id="items">
+      <h2>Your Items:</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SR.NO</th>
+            <th scope="col">Time</th>
+            <th scope="col">Description</th>
+            <th scope="col">Finished</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table_body">
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-    <script>
-        let add = document.getElementById("add");
+  <div class="container abcd">
+    <button class="btn btn-success" id="clear" onclick="clearAll()">Clear All</button>
+  </div>
 
-        // Add event listener for the "Add to list" button
-        add.addEventListener("click", () => {
-            const tit = document.getElementById("title").value;
-            const des = document.getElementById("description").value;
+  <script>
+    const addButton = document.getElementById("add");
 
-            if (!tit || !des) {
-                alert("Both title and description are required!");
-                return;
-            }
+    // Add task to list
+    addButton.addEventListener("click", () => {
+      const timeInput = document.getElementById("title").value;
+      const descriptionInput = document.getElementById("description").value;
 
-            // Check if the localStorage item exists
-            let itemJsonArray = [];
-            if (localStorage.getItem("itemJson") == null) {
-                itemJsonArray = [];
-            } else {
-                const itemJsonArraystr = localStorage.getItem("itemJson");
-                itemJsonArray = JSON.parse(itemJsonArraystr);
-            }
+      if (!timeInput || !descriptionInput) {
+        alert("Both time and description are required!");
+        return;
+      }
 
-            // Add new item to the array
-            itemJsonArray.push([tit, des, false]); // Adding a false checkbox state initially
-            localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
+      let itemJsonArray = localStorage.getItem("itemJson") ? JSON.parse(localStorage.getItem("itemJson")) : [];
+      itemJsonArray.push([timeInput, descriptionInput, false, false]); // [time, description, finished, alarmTriggered]
+      localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
 
-            // Render the updated table
-            renderTable();
+      renderTable();
+      document.getElementById("title").value = "";
+      document.getElementById("description").value = "";
+    });
 
-            // Clear the input fields
-            document.getElementById("title").value = "";
-            document.getElementById("description").value = "";
-        });
+    // Render table
+    function renderTable() {
+      const tableBody = document.getElementById("table_body");
+      const itemJsonArray = localStorage.getItem("itemJson") ? JSON.parse(localStorage.getItem("itemJson")) : [];
+      let rows = "";
 
-        // Function to render the table
-        function renderTable() {
-            const table_b = document.getElementById("table_body");
-            const itemJsonArraystr = localStorage.getItem("itemJson");
-
-            if (itemJsonArraystr) {
-                const itemJsonArray = JSON.parse(itemJsonArraystr);
-                let str = "";
-
-                itemJsonArray.forEach((element, index) => {
-                    const checked = element[2] ? 'checked' : ''; // Check if the item is marked as done
-                    str += `
-        <tr>
+      itemJsonArray.forEach((item, index) => {
+        const checked = item[2] ? "checked" : "";
+        rows += `
+          <tr>
             <th scope="row">${index + 1}</th>
-            <td>${element[0]}</td>
-            <td>${element[1]}</td>
+            <td>${item[0]}</td>
+            <td>${item[1]}</td>
             <td><input type="checkbox" class="checkbox" data-index="${index}" ${checked}></td>
             <td><button type="button" class="btn btn-danger delete-btn" data-index="${index}">Delete</button></td>
-        </tr>`;
-                });
+          </tr>`;
+      });
 
-                table_b.innerHTML = str;
-            } else {
-                table_b.innerHTML = "";
+      tableBody.innerHTML = rows;
+    }
+
+    // Delete and checkbox actions
+    document.getElementById("table_body").addEventListener("click", (event) => {
+      const itemJsonArray = JSON.parse(localStorage.getItem("itemJson"));
+
+      if (event.target.classList.contains("delete-btn")) {
+        const index = event.target.getAttribute("data-index");
+        itemJsonArray.splice(index, 1);
+        localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
+        renderTable();
+      } else if (event.target.classList.contains("checkbox")) {
+        const index = event.target.getAttribute("data-index");
+        itemJsonArray[index][2] = event.target.checked;
+        localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
+      }
+    });
+
+    // Search tasks
+    document.getElementById("searchBar").addEventListener("input", (event) => {
+      const searchText = event.target.value.toLowerCase();
+      const rows = document.querySelectorAll("#table_body tr");
+
+      rows.forEach(row => {
+        const time = row.cells[1].innerText.toLowerCase();
+        const description = row.cells[2].innerText.toLowerCase();
+        row.style.display = time.includes(searchText) || description.includes(searchText) ? "" : "none";
+      });
+    });
+
+    // Alarm notification
+    function checkAlarms() {
+      const itemJsonArray = localStorage.getItem("itemJson") ? JSON.parse(localStorage.getItem("itemJson")) : [];
+      const currentTime = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+
+      itemJsonArray.forEach((item, index) => {
+        if (item[0] === currentTime && !item[2] && !item[3]) {
+          // Play alarm sound
+          playAlarmSound();
+
+          // Show notification
+          if ('Notification' in window) {
+            if (Notification.permission === "granted") {
+              var notification = new Notification('Reminder', {
+                body: item[1]
+              });
+            } else if (Notification.permission !== 'denied') {
+              Notification.requestPermission().then(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                  var notification = new Notification('Reminder', {
+                    body: item[1]
+                  });
+                }
+              });
             }
+          }
+
+          item[3] = true; // Mark alarm as triggered
+          localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
         }
+      });
+    }
 
-        // Add event delegation for delete and checkbox actions
-        document.getElementById("table_body").addEventListener("click", (event) => {
-            if (event.target.classList.contains("delete-btn")) {
-                const index = event.target.getAttribute("data-index");
-                deleteRow(index);
-            } else if (event.target.classList.contains("checkbox")) {
-                const index = event.target.getAttribute("data-index");
-                toggleCheckboxState(index, event.target.checked);
-            }
-        });
+    // Function to play the alarm sound (with user interaction)
+    function playAlarmSound() {
+      const audio = new Audio("play.mp3"); // Replace 'alarm_sound.mp3' with the actual path of your alarm sound
+      audio.play().then(() => {
+        // Audio playback successful
+      }).catch(error => {
+        // Audio playback failed (likely due to user interaction requirement)
+        alert("Alarm sound playback was blocked. Please adjust browser settings or interact with the page to allow audio.");
+      });
+    }
 
-        // Function to delete a row
-        function deleteRow(index) {
-            const itemJsonArraystr = localStorage.getItem("itemJson");
-            if (itemJsonArraystr) {
-                let itemJsonArray = JSON.parse(itemJsonArraystr);
+    // Clear all tasks
+    function clearAll() {
+      if (confirm("Do you want to clear all tasks?")) {
+        localStorage.removeItem("itemJson");
+        renderTable();
+      }
+    }
 
-                // Remove the item from the array
-                itemJsonArray.splice(index, 1);
-                localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
-
-                // Re-render the table
-                renderTable();
-            }
-        }
-
-        // Function to toggle checkbox state
-        function toggleCheckboxState(index, isChecked) {
-            const itemJsonArraystr = localStorage.getItem("itemJson");
-            if (itemJsonArraystr) {
-                let itemJsonArray = JSON.parse(itemJsonArraystr);
-
-                // Update the checkbox state (checked/unchecked)
-                itemJsonArray[index][2] = isChecked;
-                localStorage.setItem("itemJson", JSON.stringify(itemJsonArray));
-
-                // Re-render the table
-                renderTable();
-            }
-        }
-
-        // Load the table when the page is loaded
-        window.onload = renderTable;
-
-        // Clear all data
-        function clearabc() {
-            if (confirm("Do you really want to clear?")) {
-                console.log("Clearing the storage");
-                localStorage.clear();
-                renderTable();
-            }
-        }
-    </script>
+    // Initialize
+    window.onload = () => {
+      renderTable();
+      setInterval(checkAlarms, 1000); // Check alarms every second
+    };
+  </script>
 
 </body>
 
