@@ -1,6 +1,4 @@
 /* Global Styles */
-
-/* Body */
 body {
     margin: 0;
     padding: 0;
@@ -13,14 +11,40 @@ body {
     margin-bottom: 20px;
 }
 
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        font-size: 1.2rem; /* Adjust navbar brand font size on smaller screens */
+    }
+
+    .navbar .navbar-toggler {
+        border-color: #fff; /* Ensure toggle button is visible */
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-top: 10px;
+    }
+}
+
 /* Buttons */
 .btn {
     border-radius: 4px;
 }
 
+@media (max-width: 576px) {
+    .btn {
+        width: 100%; /* Make buttons full-width on small screens */
+    }
+}
+
 /* Tables */
 .table {
     margin-top: 20px;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .table thead {
@@ -28,20 +52,81 @@ body {
     color: #ffffff;
 }
 
-/* Form Elements */
-input,
-textarea {
-    margin-bottom: 10px;
-    border-radius: 4px;
+.table td, .table th {
+    padding: 12px 15px;
 }
 
-/* AdSense Block */
-.adsbygoogle {
-    display: block;
-    margin: 20px auto;
+.table-responsive {
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.875rem; /* Reduce font size for better readability on smaller screens */
+    }
+}
+
+/* Form Elements */
+input, textarea {
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: 100%; /* Make form elements full-width */
+}
+
+@media (max-width: 576px) {
+    input, textarea {
+        padding: 10px; /* Increase padding for better touch responsiveness */
+    }
 }
 
 /* Centering Content */
 .text-center {
     text-align: center;
+}
+
+/* Ads */
+.adsbygoogle {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+/* Responsive Styling for Larger Screens */
+@media (min-width: 992px) {
+    .container {
+        max-width: 90%; /* Prevent container from getting too wide on larger screens */
+    }
+}
+
+/* Mobile-First Styling for Small Screens */
+@media (max-width: 576px) {
+    .container {
+        padding: 15px; /* Add padding on mobile */
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Stack navbar items vertically on small screens */
+    }
+}
+
+/* Specific Adjustments for Task History Page */
+.history-page .table {
+    margin-top: 30px;
+}
+
+/* Adjust Task History Table Layout on Small Screens */
+@media (max-width: 576px) {
+    .history-page .table thead th {
+        font-size: 0.85rem; /* Adjust font size on small screens */
+    }
+
+    .history-page .table td,
+    .history-page .table th {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Adjustments for Navbar (for Task History page) */
+.history-page .navbar {
+    margin-bottom: 10px;
 }
